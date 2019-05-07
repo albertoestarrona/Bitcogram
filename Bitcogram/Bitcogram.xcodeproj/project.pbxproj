@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		40772153CCB2E8CDDD71F6B6 /* Pods_Bitcogram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 816060C89ADD658D534C9AEB /* Pods_Bitcogram.framework */; };
 		D2E55EC3228112B200163034 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E55EC2228112B200163034 /* AppDelegate.swift */; };
-		D2E55EC5228112B200163034 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E55EC4228112B200163034 /* ViewController.swift */; };
 		D2E55EC8228112B200163034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E55EC6228112B200163034 /* Main.storyboard */; };
 		D2E55ECA228112B400163034 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2E55EC9228112B400163034 /* Assets.xcassets */; };
-		D2E55ECD228112B400163034 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E55ECB228112B400163034 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +18,8 @@
 		D29AC56A79217F83BED8D2DA /* Pods-Bitcogram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitcogram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bitcogram/Pods-Bitcogram.release.xcconfig"; sourceTree = "<group>"; };
 		D2E55EBF228112B200163034 /* Bitcogram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bitcogram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E55EC2228112B200163034 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2E55EC4228112B200163034 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D2E55EC7228112B200163034 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2E55EC9228112B400163034 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D2E55ECC228112B400163034 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2E55ECE228112B400163034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D95579A006EE3F5170D2BDDC /* Pods-Bitcogram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitcogram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bitcogram/Pods-Bitcogram.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,10 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				D2E55EC2228112B200163034 /* AppDelegate.swift */,
-				D2E55EC4228112B200163034 /* ViewController.swift */,
 				D2E55EC6228112B200163034 /* Main.storyboard */,
 				D2E55EC9228112B400163034 /* Assets.xcassets */,
-				D2E55ECB228112B400163034 /* LaunchScreen.storyboard */,
 				D2E55ECE228112B400163034 /* Info.plist */,
 			);
 			path = Bitcogram;
@@ -148,7 +142,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2E55ECD228112B400163034 /* LaunchScreen.storyboard in Resources */,
 				D2E55ECA228112B400163034 /* Assets.xcassets in Resources */,
 				D2E55EC8228112B200163034 /* Main.storyboard in Resources */,
 			);
@@ -208,7 +201,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2E55EC5228112B200163034 /* ViewController.swift in Sources */,
 				D2E55EC3228112B200163034 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,14 +214,6 @@
 				D2E55EC7228112B200163034 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D2E55ECB228112B400163034 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2E55ECC228112B400163034 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
