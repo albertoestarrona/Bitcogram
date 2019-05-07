@@ -25,24 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.initialize(with: configuration)
         saveInstallationObject()
         
+        let window = UIWindow()
+        self.window = window
+        window.makeKeyAndVisible()
+        window.rootViewController = selectViewController()
+        
         return true
-    }
-
-    func saveInstallationObject(){
-        if let installation = PFInstallation.current(){
-            installation.saveInBackground {
-                (success: Bool, error: Error?) in
-                if (success) {
-                    print("Successfully connected to Back4App")
-                } else {
-                    if let myError = error{
-                        print(myError.localizedDescription)
-                    }else{
-                        print("Uknown error")
-                    }
-                }
-            }
-        }
     }
         
     func applicationWillResignActive(_ application: UIApplication) {
