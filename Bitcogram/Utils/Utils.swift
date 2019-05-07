@@ -48,3 +48,15 @@ func selectViewController() -> UIViewController {
     
     return nextViewController
 }
+
+func presentError(controller: UIViewController, title: String, error: String) {
+    let alertCtrl = UIAlertController(title: title, message: error, preferredStyle: .alert)
+    alertCtrl.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+    controller.present(alertCtrl, animated: true)
+}
+
+func presentAlert(controller: UIViewController, title: String, message: String) {
+    let alertCtrl = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    alertCtrl.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    controller.present(alertCtrl, animated: true)
+}

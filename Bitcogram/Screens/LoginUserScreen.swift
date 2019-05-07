@@ -9,11 +9,11 @@
 import UIKit
 import SnapKit
 import NVActivityIndicatorView
+import Parse
 
-class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelegate {
-    var activity: NVActivityIndicatorView?
+class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelegate, NVActivityIndicatorViewable {
     var keyboardDismissAction: SelectorWrapper?
-    var inputEmail = UITextField()
+    var inputUsername = UITextField()
     var inputPassword = UITextField()
     
     override func viewDidLoad() {
@@ -24,7 +24,6 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
     
     func createUI(in container: UIView) {
         container.backgroundColor = .white
-        activity = ActivityIndicator.build(in: container)
         
         let labelTitle = UILabel()
         labelTitle.textColor = .gray
@@ -34,16 +33,16 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
         labelTitle.text = "Enter to your account"
         container.addSubview(labelTitle)
         
-        inputEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        inputEmail.borderStyle = UITextField.BorderStyle.none
-        inputEmail.backgroundColor = nil
-        inputEmail.textColor = UIColor.black
-        inputEmail.keyboardType = UIKeyboardType.emailAddress
-        inputEmail.autocapitalizationType = UITextAutocapitalizationType.none
-        inputEmail.autocorrectionType = UITextAutocorrectionType.no
-        inputEmail.background = UIImage(named: "line")
-        inputEmail.delegate = self
-        container.addSubview(inputEmail)
+        inputUsername.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        inputUsername.borderStyle = UITextField.BorderStyle.none
+        inputUsername.backgroundColor = nil
+        inputUsername.textColor = UIColor.black
+        inputUsername.keyboardType = UIKeyboardType.default
+        inputUsername.autocapitalizationType = UITextAutocapitalizationType.none
+        inputUsername.autocorrectionType = UITextAutocorrectionType.no
+        inputUsername.background = UIImage(named: "line")
+        inputUsername.delegate = self
+        container.addSubview(inputUsername)
         
         inputPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         inputPassword.borderStyle = UITextField.BorderStyle.none
@@ -88,7 +87,7 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
             make.right.equalTo(container).offset(-30)
             make.bottom.equalTo(container.safeAreaLayoutGuide.snp.top).offset(50)
         }
-        inputEmail.snp.makeConstraints { (make) -> Void in
+        inputUsername.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
             make.left.equalTo(container).offset(30)
             make.right.equalTo(container).offset(-30)
@@ -98,7 +97,7 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
             make.centerX.equalToSuperview()
             make.left.equalTo(container).offset(30)
             make.right.equalTo(container).offset(-30)
-            make.bottom.equalTo(inputEmail.safeAreaLayoutGuide.snp.bottom).offset(50)
+            make.bottom.equalTo(inputUsername.safeAreaLayoutGuide.snp.bottom).offset(50)
         }
         buttonLogin.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
@@ -117,7 +116,17 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
     }
     
     @objc func loginFlow(sender:UIButton!) {
-        
+        self.startAnimating()
+        PFUser.logInWithUsername(inBackground: inputUsername.text!, password: inputPassword.text!) { (user, error) in
+            self.stopAnimating()
+            if user != nil {
+                // TODO Go to FEED
+            } else {
+                if let description = error?.localizedDescription {
+                    presentError(controller: self, title: "Error", error: description)
+                }
+            }
+        }
     }
     
     @objc func signupFlow(sender:UIButton!) {
