@@ -2,9 +2,10 @@
 # platform :ios, '9.0'
 
 target 'Bitcogram' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-
   # Pods for Bitcogram
+  pod 'SnapKit', '4.2.0'
+  pod 'NVActivityIndicatorView', '4.6.1'
+  pod 'Parse'
 
 end
