@@ -12,7 +12,6 @@ import NVActivityIndicatorView
 import Parse
 
 class SignupUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelegate, NVActivityIndicatorViewable {
-    var activity: NVActivityIndicatorView?
     var keyboardDismissAction: SelectorWrapper?
     var inputUsername = UITextField()
     var inputEmail = UITextField()
@@ -26,7 +25,7 @@ class SignupUserScreen : UIViewController, KeyboardDismissable, UITextFieldDeleg
     
     func createUI(in container: UIView) {
         container.backgroundColor = .white
-        activity = ActivityIndicator.build(in: container)
+        Logo.build(in: container, height: 200, bottomOffset: 50)
         
         let labelTitle = UILabel()
         labelTitle.textColor = .gray
