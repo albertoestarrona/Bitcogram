@@ -39,12 +39,16 @@ func selectViewController() -> UIViewController {
         let feedViewController = FeedUserScreen()
         feedViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "tab-history"), selectedImage: nil)
         navigationFeed.viewControllers = [feedViewController]
+        
         let cameraViewController = CameraPostScreen()
         cameraViewController.tabBarItem = UITabBarItem(title: "Camera", image: UIImage(named: "tab-camera"), selectedImage: nil)
+        
+        let navigationProfile = UINavigationController()
         let profileViewController = ProfileUserScreen()
         profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "tab-profile"), selectedImage: nil)
+        navigationProfile.viewControllers = [profileViewController]
         
-        let tabBarList = [navigationFeed, cameraViewController, profileViewController]
+        let tabBarList = [navigationFeed, cameraViewController, navigationProfile]
         tabBarController.viewControllers = tabBarList
         nextViewController = tabBarController
     } else {

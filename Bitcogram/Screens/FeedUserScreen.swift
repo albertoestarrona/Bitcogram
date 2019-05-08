@@ -17,11 +17,6 @@ class FeedUserScreen : UIViewController {
         createUI(in: view)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        //createUI(in: view)
-    }
-    
     func createUI(in container: UIView) {
         let nav = self.navigationController?.navigationBar
         nav?.barStyle = UIBarStyle.default

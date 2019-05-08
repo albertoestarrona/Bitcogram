@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let configuration = ParseClientConfiguration {
-            $0.applicationId = "9FYyO6IAdKuAALroVwsYbf2ZRy0DSKnAKHmNzdrU"
-            $0.clientKey = "DcDNEzGJqAFzR5FUDKRa8GGwVCyiE1Hlxf96odDg"
+            $0.applicationId = "IMn0HGPqjoeUy5rA87qicocIUrWKwffNfBgwb7GL"
+            $0.clientKey = "cgJqpig5ljbw4HpERXSImwaxDSi0i4z8Msjm1Ywh"
             $0.server = "https://parseapi.back4app.com"
         }
         Parse.initialize(with: configuration)

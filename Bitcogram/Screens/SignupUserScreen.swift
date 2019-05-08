@@ -113,6 +113,10 @@ class SignupUserScreen : UIViewController, KeyboardDismissable, UITextFieldDeleg
             user.username = try inputUsername.validatedText(validationType: ValidatorType.username)
             user.email = try inputEmail.validatedText(validationType: ValidatorType.email)
             user.password = try inputPassword.validatedText(validationType: ValidatorType.password)
+            user["posts"] = 0
+            user["followers"] = 0
+            user["following"] = 0
+            
             self.startAnimating()
             
             user.signUpInBackground { (success, error) in
