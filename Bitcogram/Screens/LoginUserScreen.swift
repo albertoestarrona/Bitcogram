@@ -24,6 +24,7 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
     
     func createUI(in container: UIView) {
         container.backgroundColor = .white
+        Logo.build(in: container, height: 200, bottomOffset: 50)
         
         let labelTitle = UILabel()
         labelTitle.textColor = .gray
@@ -57,7 +58,7 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
         container.addSubview(inputPassword)
         
         let buttonLogin = UIButton()
-        buttonLogin.setTitleColor(UIColor.blue, for: .normal)
+        buttonLogin.setTitleColor(UIColor.black, for: .normal)
         buttonLogin.setTitleColor(UIColor.lightGray, for: .highlighted)
         buttonLogin.backgroundColor = UIColor.clear
         buttonLogin.setTitle("Submit", for: .normal)
@@ -107,7 +108,7 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
             make.centerX.equalToSuperview()
             make.left.equalTo(container).offset(30)
             make.right.equalTo(container).offset(-30)
-            make.bottom.equalTo(buttonLogin.safeAreaLayoutGuide.snp.bottom).offset(60)
+            make.bottom.equalTo(buttonLogin.safeAreaLayoutGuide.snp.bottom).offset(50)
         }
         buttonSignup.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
