@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40772153CCB2E8CDDD71F6B6 /* Pods_Bitcogram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 816060C89ADD658D534C9AEB /* Pods_Bitcogram.framework */; };
+		D239765522833AEE001F70BA /* CameraPostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D239765422833AEE001F70BA /* CameraPostScreen.swift */; };
 		D2A8D0882281D50C00B056B6 /* LoginUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D0872281D50C00B056B6 /* LoginUserScreen.swift */; };
 		D2A8D08A2281D51C00B056B6 /* SignupUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D0892281D51C00B056B6 /* SignupUserScreen.swift */; };
 		D2A8D08D2281D6F100B056B6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D08C2281D6F100B056B6 /* Utils.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		816060C89ADD658D534C9AEB /* Pods_Bitcogram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bitcogram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D239765422833AEE001F70BA /* CameraPostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPostScreen.swift; sourceTree = "<group>"; };
 		D29AC56A79217F83BED8D2DA /* Pods-Bitcogram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitcogram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bitcogram/Pods-Bitcogram.release.xcconfig"; sourceTree = "<group>"; };
 		D2A8D0872281D50C00B056B6 /* LoginUserScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserScreen.swift; sourceTree = "<group>"; };
 		D2A8D0892281D51C00B056B6 /* SignupUserScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUserScreen.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				D2A8D0892281D51C00B056B6 /* SignupUserScreen.swift */,
 				D2A8D08E2281DB1000B056B6 /* FeedUserScreen.swift */,
 				D2A8D0A12282637F00B056B6 /* ProfileUserScreen.swift */,
+				D239765422833AEE001F70BA /* CameraPostScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				D2A8D0962281E3D800B056B6 /* KeyboardDismissable.swift in Sources */,
 				D2A8D0922281DC3300B056B6 /* ActivityIndicator.swift in Sources */,
 				D2A8D0A0228257CF00B056B6 /* Validators.swift in Sources */,
+				D239765522833AEE001F70BA /* CameraPostScreen.swift in Sources */,
 				D2A8D0A8228275A200B056B6 /* Logo.swift in Sources */,
 				D2A8D08D2281D6F100B056B6 /* Utils.swift in Sources */,
 			);

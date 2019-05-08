@@ -31,13 +31,18 @@ func selectViewController() -> UIViewController {
     
     if currentUser != nil {
         let tabBarController = UITabBarController()
+        tabBarController.tabBar.barTintColor = UIColor.init(red: 243/255, green: 243/255, blue: 244/255, alpha: 1)
+        tabBarController.tabBar.unselectedItemTintColor = UIColor.lightGray
+        tabBarController.tabBar.tintColor = UIColor.init(red: 248/255, green: 159/255, blue: 61/255, alpha: 1)
         
         let feedViewController = FeedUserScreen()
-        feedViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "application_tab_icon"), selectedImage: nil)
+        feedViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "tab-history"), selectedImage: nil)
+        let cameraViewController = CameraPostScreen()
+        cameraViewController.tabBarItem = UITabBarItem(title: "Camera", image: UIImage(named: "tab-camera"), selectedImage: nil)
         let profileViewController = ProfileUserScreen()
-        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "application_tab_icon"), selectedImage: nil)
+        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "tab-profile"), selectedImage: nil)
         
-        let tabBarList = [feedViewController, profileViewController]
+        let tabBarList = [feedViewController, cameraViewController, profileViewController]
         tabBarController.viewControllers = tabBarList
         nextViewController = tabBarController
     } else {

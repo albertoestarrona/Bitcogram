@@ -70,7 +70,7 @@ class SignupUserScreen : UIViewController, KeyboardDismissable, UITextFieldDeleg
         container.addSubview(inputPassword)
         
         let buttonSignup = UIButton()
-        buttonSignup.setTitleColor(UIColor.blue, for: .normal)
+        buttonSignup.setTitleColor(UIColor.black, for: .normal)
         buttonSignup.setTitleColor(UIColor.lightGray, for: .highlighted)
         buttonSignup.backgroundColor = UIColor.clear
         buttonSignup.setTitle("Submit", for: .normal)
