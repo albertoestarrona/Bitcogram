@@ -19,8 +19,9 @@
 		D2A8D09E2282579A00B056B6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D09D2282579A00B056B6 /* UITextField+Extension.swift */; };
 		D2A8D0A0228257CF00B056B6 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D09F228257CF00B056B6 /* Validators.swift */; };
 		D2A8D0A22282637F00B056B6 /* ProfileUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D0A12282637F00B056B6 /* ProfileUserScreen.swift */; };
+		D2A8D0A42282728200B056B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A8D0A32282728200B056B6 /* LaunchScreen.storyboard */; };
+		D2A8D0A62282733C00B056B6 /* logo_white.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D2A8D0A52282733C00B056B6 /* logo_white.jpg */; };
 		D2E55EC3228112B200163034 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E55EC2228112B200163034 /* AppDelegate.swift */; };
-		D2E55EC8228112B200163034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E55EC6228112B200163034 /* Main.storyboard */; };
 		D2E55ECA228112B400163034 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2E55EC9228112B400163034 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -38,9 +39,10 @@
 		D2A8D09D2282579A00B056B6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		D2A8D09F228257CF00B056B6 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		D2A8D0A12282637F00B056B6 /* ProfileUserScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserScreen.swift; sourceTree = "<group>"; };
+		D2A8D0A32282728200B056B6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D2A8D0A52282733C00B056B6 /* logo_white.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo_white.jpg; sourceTree = "<group>"; };
 		D2E55EBF228112B200163034 /* Bitcogram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bitcogram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E55EC2228112B200163034 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2E55EC7228112B200163034 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2E55EC9228112B400163034 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2E55ECE228112B400163034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D95579A006EE3F5170D2BDDC /* Pods-Bitcogram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitcogram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bitcogram/Pods-Bitcogram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		D2A8D0982281EA9000B056B6 /* general */ = {
 			isa = PBXGroup;
 			children = (
+				D2A8D0A52282733C00B056B6 /* logo_white.jpg */,
 				D2A8D09B2281EBC200B056B6 /* line.png */,
 			);
 			path = general;
@@ -148,9 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				D2E55EC2228112B200163034 /* AppDelegate.swift */,
-				D2E55EC6228112B200163034 /* Main.storyboard */,
 				D2E55EC9228112B400163034 /* Assets.xcassets */,
 				D2E55ECE228112B400163034 /* Info.plist */,
+				D2A8D0A32282728200B056B6 /* LaunchScreen.storyboard */,
 			);
 			path = Bitcogram;
 			sourceTree = "<group>";
@@ -216,7 +219,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2E55ECA228112B400163034 /* Assets.xcassets in Resources */,
-				D2E55EC8228112B200163034 /* Main.storyboard in Resources */,
+				D2A8D0A42282728200B056B6 /* LaunchScreen.storyboard in Resources */,
+				D2A8D0A62282733C00B056B6 /* logo_white.jpg in Resources */,
 				D2A8D09C2281EBC200B056B6 /* line.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,17 +294,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		D2E55EC6228112B200163034 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D2E55EC7228112B200163034 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D2E55ECF228112B400163034 /* Debug */ = {
@@ -434,7 +427,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.estarrona.Bitcogram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -453,7 +446,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.estarrona.Bitcogram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
