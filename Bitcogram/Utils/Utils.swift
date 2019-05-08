@@ -30,7 +30,16 @@ func selectViewController() -> UIViewController {
     var nextViewController : UIViewController
     
     if currentUser != nil {
-        nextViewController = FeedUserScreen()
+        let tabBarController = UITabBarController()
+        
+        let feedViewController = FeedUserScreen()
+        feedViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "application_tab_icon"), selectedImage: nil)
+        let profileViewController = ProfileUserScreen()
+        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "application_tab_icon"), selectedImage: nil)
+        
+        let tabBarList = [feedViewController, profileViewController]
+        tabBarController.viewControllers = tabBarList
+        nextViewController = tabBarController
     } else {
         let navigation = UINavigationController()
         navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)

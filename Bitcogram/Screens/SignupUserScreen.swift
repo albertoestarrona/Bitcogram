@@ -119,7 +119,7 @@ class SignupUserScreen : UIViewController, KeyboardDismissable, UITextFieldDeleg
             user.signUpInBackground { (success, error) in
                 self.stopAnimating()
                 if success{
-                    // TODO Go to FEED
+                    self.view.window!.rootViewController = selectViewController()
                 }else{
                     if let description = error?.localizedDescription{
                         presentError(controller: self, title: "Error", error: description)

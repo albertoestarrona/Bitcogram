@@ -120,7 +120,7 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
         PFUser.logInWithUsername(inBackground: inputUsername.text!, password: inputPassword.text!) { (user, error) in
             self.stopAnimating()
             if user != nil {
-                // TODO Go to FEED
+                self.view.window!.rootViewController = selectViewController()
             } else {
                 if let description = error?.localizedDescription {
                     presentError(controller: self, title: "Error", error: description)
