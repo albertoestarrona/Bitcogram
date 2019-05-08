@@ -16,6 +16,8 @@
 		D2A8D0942281E31700B056B6 /* UIViewController+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D0932281E31700B056B6 /* UIViewController+Extentions.swift */; };
 		D2A8D0962281E3D800B056B6 /* KeyboardDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D0952281E3D700B056B6 /* KeyboardDismissable.swift */; };
 		D2A8D09C2281EBC200B056B6 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A8D09B2281EBC200B056B6 /* line.png */; };
+		D2A8D09E2282579A00B056B6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D09D2282579A00B056B6 /* UITextField+Extension.swift */; };
+		D2A8D0A0228257CF00B056B6 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D09F228257CF00B056B6 /* Validators.swift */; };
 		D2E55EC3228112B200163034 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E55EC2228112B200163034 /* AppDelegate.swift */; };
 		D2E55EC8228112B200163034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E55EC6228112B200163034 /* Main.storyboard */; };
 		D2E55ECA228112B400163034 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2E55EC9228112B400163034 /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 		D2A8D0932281E31700B056B6 /* UIViewController+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extentions.swift"; sourceTree = "<group>"; };
 		D2A8D0952281E3D700B056B6 /* KeyboardDismissable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismissable.swift; sourceTree = "<group>"; };
 		D2A8D09B2281EBC200B056B6 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		D2A8D09D2282579A00B056B6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		D2A8D09F228257CF00B056B6 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		D2E55EBF228112B200163034 /* Bitcogram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bitcogram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E55EC2228112B200163034 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E55EC7228112B200163034 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				D2A8D08C2281D6F100B056B6 /* Utils.swift */,
+				D2A8D09F228257CF00B056B6 /* Validators.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -93,6 +98,7 @@
 				D2A8D0912281DC3300B056B6 /* ActivityIndicator.swift */,
 				D2A8D0932281E31700B056B6 /* UIViewController+Extentions.swift */,
 				D2A8D0952281E3D700B056B6 /* KeyboardDismissable.swift */,
+				D2A8D09D2282579A00B056B6 /* UITextField+Extension.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A8D09E2282579A00B056B6 /* UITextField+Extension.swift in Sources */,
 				D2A8D08A2281D51C00B056B6 /* SignupUserScreen.swift in Sources */,
 				D2A8D0882281D50C00B056B6 /* LoginUserScreen.swift in Sources */,
 				D2A8D0942281E31700B056B6 /* UIViewController+Extentions.swift in Sources */,
@@ -273,6 +280,7 @@
 				D2E55EC3228112B200163034 /* AppDelegate.swift in Sources */,
 				D2A8D0962281E3D800B056B6 /* KeyboardDismissable.swift in Sources */,
 				D2A8D0922281DC3300B056B6 /* ActivityIndicator.swift in Sources */,
+				D2A8D0A0228257CF00B056B6 /* Validators.swift in Sources */,
 				D2A8D08D2281D6F100B056B6 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

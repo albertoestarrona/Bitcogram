@@ -28,7 +28,7 @@ class LoginUserScreen : UIViewController, KeyboardDismissable, UITextFieldDelega
         let labelTitle = UILabel()
         labelTitle.textColor = .gray
         labelTitle.textAlignment = .center
-        labelTitle.sizeToFit()
+        labelTitle.adjustsFontSizeToFitWidth = true
         labelTitle.font = UIFont.boldSystemFont(ofSize: 16.0)
         labelTitle.text = "Enter to your account"
         container.addSubview(labelTitle)
