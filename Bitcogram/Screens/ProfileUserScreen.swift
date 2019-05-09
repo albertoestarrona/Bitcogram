@@ -24,10 +24,11 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     override func viewDidLoad() {
         super.viewDidLoad()
         createUI(in: view)
+        self.startAnimating()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         getUserData()
     }
     
