@@ -13,6 +13,9 @@
 		D239765922834C72001F70BA /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D239765822834C72001F70BA /* camera-icon.png */; };
 		D239765B22837C4F001F70BA /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D239765A22837C4F001F70BA /* UIImage+Extensions.swift */; };
 		D239765D22838A3D001F70BA /* ParseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D239765C22838A3D001F70BA /* ParseUtils.swift */; };
+		D239765F2283A018001F70BA /* Fusuma.swift in Sources */ = {isa = PBXBuildFile; fileRef = D239765E2283A018001F70BA /* Fusuma.swift */; };
+		D23976612283A282001F70BA /* SharePostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23976602283A282001F70BA /* SharePostScreen.swift */; };
+		D23976632283AFA0001F70BA /* NavigationBitcogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23976622283AFA0001F70BA /* NavigationBitcogram.swift */; };
 		D2A8D0882281D50C00B056B6 /* LoginUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D0872281D50C00B056B6 /* LoginUserScreen.swift */; };
 		D2A8D08A2281D51C00B056B6 /* SignupUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D0892281D51C00B056B6 /* SignupUserScreen.swift */; };
 		D2A8D08D2281D6F100B056B6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D08C2281D6F100B056B6 /* Utils.swift */; };
@@ -39,6 +42,9 @@
 		D239765822834C72001F70BA /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
 		D239765A22837C4F001F70BA /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		D239765C22838A3D001F70BA /* ParseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseUtils.swift; sourceTree = "<group>"; };
+		D239765E2283A018001F70BA /* Fusuma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fusuma.swift; sourceTree = "<group>"; };
+		D23976602283A282001F70BA /* SharePostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePostScreen.swift; sourceTree = "<group>"; };
+		D23976622283AFA0001F70BA /* NavigationBitcogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBitcogram.swift; sourceTree = "<group>"; };
 		D29AC56A79217F83BED8D2DA /* Pods-Bitcogram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitcogram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bitcogram/Pods-Bitcogram.release.xcconfig"; sourceTree = "<group>"; };
 		D2A8D0872281D50C00B056B6 /* LoginUserScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserScreen.swift; sourceTree = "<group>"; };
 		D2A8D0892281D51C00B056B6 /* SignupUserScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUserScreen.swift; sourceTree = "<group>"; };
@@ -99,6 +105,7 @@
 				D2A8D08E2281DB1000B056B6 /* FeedUserScreen.swift */,
 				D2A8D0A12282637F00B056B6 /* ProfileUserScreen.swift */,
 				D239765422833AEE001F70BA /* CameraPostScreen.swift */,
+				D23976602283A282001F70BA /* SharePostScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -122,6 +129,8 @@
 				D2A8D09D2282579A00B056B6 /* UITextField+Extension.swift */,
 				D2A8D0A7228275A200B056B6 /* Logo.swift */,
 				D239765A22837C4F001F70BA /* UIImage+Extensions.swift */,
+				D239765E2283A018001F70BA /* Fusuma.swift */,
+				D23976622283AFA0001F70BA /* NavigationBitcogram.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
@@ -305,12 +314,15 @@
 			files = (
 				D2A8D09E2282579A00B056B6 /* UITextField+Extension.swift in Sources */,
 				D2A8D08A2281D51C00B056B6 /* SignupUserScreen.swift in Sources */,
+				D23976612283A282001F70BA /* SharePostScreen.swift in Sources */,
 				D2A8D0882281D50C00B056B6 /* LoginUserScreen.swift in Sources */,
 				D239765B22837C4F001F70BA /* UIImage+Extensions.swift in Sources */,
 				D2A8D0A22282637F00B056B6 /* ProfileUserScreen.swift in Sources */,
 				D2A8D0942281E31700B056B6 /* UIViewController+Extentions.swift in Sources */,
 				D2A8D08F2281DB1000B056B6 /* FeedUserScreen.swift in Sources */,
 				D2E55EC3228112B200163034 /* AppDelegate.swift in Sources */,
+				D239765F2283A018001F70BA /* Fusuma.swift in Sources */,
+				D23976632283AFA0001F70BA /* NavigationBitcogram.swift in Sources */,
 				D2A8D0962281E3D800B056B6 /* KeyboardDismissable.swift in Sources */,
 				D2A8D0922281DC3300B056B6 /* ActivityIndicator.swift in Sources */,
 				D2A8D0A0228257CF00B056B6 /* Validators.swift in Sources */,

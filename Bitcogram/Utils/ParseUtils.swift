@@ -10,10 +10,27 @@ import Foundation
 import Parse
 
 // Parse
-func saveImageToParse(image: UIImage, key: String, viewController: UIViewController) {
+func saveInstallationObject(){
+    if let installation = PFInstallation.current(){
+        installation.saveInBackground {
+            (success: Bool, error: Error?) in
+            if (success) {
+                print("Successfully connected to Back4App")
+            } else {
+                if let myError = error{
+                    print(myError.localizedDescription)
+                }else{
+                    print("Uknown error")
+                }
+            }
+        }
+    }
+}
+
+func saveImageToParse(object: PFObject, image: UIImage, key: String, viewController: UIViewController) {
     let avatar = PFFileObject(name: PFUser.current()!.username, data: image.pngData()!)
-    PFUser.current()!.setObject(avatar!, forKey: key)
-    PFUser.current()!.saveInBackground { (success, error) in
+    object.setObject(avatar!, forKey: key)
+    object.saveInBackground { (success, error) in
         if success{
             print("Yahooooo!")
         }else{

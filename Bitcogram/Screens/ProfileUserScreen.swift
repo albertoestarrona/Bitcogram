@@ -14,8 +14,8 @@ import Fusuma
 
 class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorViewable {
     
-    let currentUser = PFUser.current()
-    let fusuma = FusumaViewController()
+    var currentUser = PFUser.current()
+    var fusuma = FusumaViewController()
     var avatarImageView = UIImageView()
     var labelFollowersCount = UILabel()
     var labelFollowingCount = UILabel()
@@ -24,13 +24,15 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     override func viewDidLoad() {
         super.viewDidLoad()
         createUI(in: view)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         getUserData()
     }
     
     func createUI(in container: UIView) {
-        fusuma.delegate = self
-        fusuma.availableModes = [FusumaMode.library, FusumaMode.camera]
-        fusuma.allowMultipleSelection = false
+        fusuma = FusumaConfig.initFusuma(in: self, fusuma: fusuma)
         
         navigationItem.title = currentUser?.username
         container.backgroundColor = .white
@@ -134,14 +136,14 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         do {
             self.startAnimating()
             try PFUser.current()?.fetch()
-            let user = PFUser.current()
-            let followers = user?.object(forKey: "followers") as! NSNumber
+            currentUser = PFUser.current()
+            let followers = currentUser?.object(forKey: "followers") as! NSNumber
             labelFollowersCount.text = followers.stringValue
-            let following = user?.object(forKey: "following") as! NSNumber
+            let following = currentUser?.object(forKey: "following") as! NSNumber
             labelFollowingCount.text = following.stringValue
-            let posts = user?.object(forKey: "posts") as! NSNumber
+            let posts = currentUser?.object(forKey: "posts") as! NSNumber
             labelPostsCount.text = posts.stringValue
-            let userImageFile = user?["avatar"] as! PFFileObject
+            let userImageFile = currentUser?["avatar"] as! PFFileObject
             userImageFile.getDataInBackground (block: { (data, error) -> Void in
                 if error == nil {
                     if let imageData = data {
@@ -169,7 +171,7 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         avatarImageView.image = image
         
         let avatar = image.resized(toWidth: 512)
-        saveImageToParse(image: avatar!, key: "avatar", viewController: self)
+        saveImageToParse(object: currentUser!, image: avatar!, key: "avatar", viewController: self)
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: URL) {

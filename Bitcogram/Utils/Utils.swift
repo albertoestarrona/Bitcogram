@@ -6,24 +6,8 @@
 //  Copyright © 2019 Estarrona.me. All rights reserved.
 //
 
+import UIKit
 import Parse
-
-func saveInstallationObject(){
-    if let installation = PFInstallation.current(){
-        installation.saveInBackground {
-            (success: Bool, error: Error?) in
-            if (success) {
-                print("Successfully connected to Back4App")
-            } else {
-                if let myError = error{
-                    print(myError.localizedDescription)
-                }else{
-                    print("Uknown error")
-                }
-            }
-        }
-    }
-}
 
 func selectViewController() -> UIViewController {
     let currentUser = PFUser.current()
@@ -35,31 +19,30 @@ func selectViewController() -> UIViewController {
         tabBarController.tabBar.unselectedItemTintColor = UIColor.lightGray
         tabBarController.tabBar.tintColor = UIColor.init(red: 248/255, green: 159/255, blue: 61/255, alpha: 1)
         
-        let navigationFeed = UINavigationController()
+        let navigationFeed = NavigationBitcogram()
         let feedViewController = FeedUserScreen()
         feedViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "tab-history"), selectedImage: nil)
         navigationFeed.viewControllers = [feedViewController]
         
+        let navigationCamera = NavigationBitcogram()
         let cameraViewController = CameraPostScreen()
         cameraViewController.tabBarItem = UITabBarItem(title: "Camera", image: UIImage(named: "tab-camera"), selectedImage: nil)
+        navigationCamera.viewControllers = [cameraViewController]
         
-        let navigationProfile = UINavigationController()
+        let navigationProfile = NavigationBitcogram()
         let profileViewController = ProfileUserScreen()
         profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "tab-profile"), selectedImage: nil)
         navigationProfile.viewControllers = [profileViewController]
         
-        let tabBarList = [navigationFeed, cameraViewController, navigationProfile]
+        let tabBarList = [navigationFeed, navigationCamera, navigationProfile]
         tabBarController.viewControllers = tabBarList
         nextViewController = tabBarController
     } else {
-        let navigation = UINavigationController()
+        let navigation = NavigationBitcogram()
         navigation.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigation.navigationBar.shadowImage = UIImage()
         navigation.navigationBar.backgroundColor = .clear
         navigation.navigationBar.isTranslucent = true
-        navigation.navigationBar.tintColor = .lightGray
-        navigation.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray]
-        navigation.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.gray]
         let loginViewController = LoginUserScreen()
         loginViewController.navigationItem.title = "Login"
         navigation.viewControllers = [loginViewController]
