@@ -12,7 +12,7 @@ import NVActivityIndicatorView
 import Parse
 import Fusuma
 
-class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorViewable {
+class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorViewable, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var currentUser = PFUser.current()
     var fusuma = FusumaViewController()
@@ -20,6 +20,8 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     var labelFollowersCount = UILabel()
     var labelFollowingCount = UILabel()
     var labelPostsCount = UILabel()
+    var pictures = [PFObject]()
+    var picturesCollectionView : UICollectionView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,7 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         getUserData()
+        getUserPictures()
     }
     
     func createUI(in container: UIView) {
@@ -94,6 +97,19 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         labelPostsTitle.text = "Posts"
         container.addSubview(labelPostsTitle)
         
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: (container.frame.size.width/3)-2, height: (container.frame.size.width/3)-2)
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 2
+        
+        picturesCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        picturesCollectionView!.dataSource = self
+        picturesCollectionView!.delegate = self
+        picturesCollectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "pictureCell")
+        picturesCollectionView!.backgroundColor = UIColor.clear
+        container.addSubview(picturesCollectionView!)
+        
         avatarImageView.snp.remakeConstraints { (make) -> Void in
             make.height.equalTo(170)
             make.width.equalTo(170)
@@ -130,6 +146,13 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
             make.centerX.equalTo(labelFollowingCount.snp.centerX)
             make.top.equalTo(labelFollowingCount.safeAreaLayoutGuide.snp.bottom).offset(8)
         }
+        picturesCollectionView?.snp.remakeConstraints { (make) -> Void in
+            make.left.equalTo(container.snp.left)
+            make.right.equalTo(container.snp.right)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(labelFollowingTitle.safeAreaLayoutGuide.snp.bottom).offset(40)
+            make.bottom.equalTo(container.safeAreaLayoutGuide.snp.bottom)
+        }
     }
     
     // Reload CurrentUser
@@ -159,6 +182,21 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         }
     }
     
+    func getUserPictures()  {
+        let query = PFQuery(className:"Post")
+        // query.whereKey("playerName", equalTo:"Sean Plott")
+        query.order(byDescending: "createdAt")
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            self.stopAnimating()
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let objects = objects {
+                self.pictures = objects
+                self.picturesCollectionView?.reloadData()
+            }
+        }
+    }
+    
     // Profile picture capture
     @objc func profileImageClicked() {
         self.present(fusuma, animated: true, completion: nil)
@@ -181,4 +219,37 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     func fusumaCameraRollUnauthorized() {
     }
     
+    //MARK: UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return pictures.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        print("User tapped on item \(indexPath.row)")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "pictureCell", for: indexPath as IndexPath)
+        myCell.backgroundColor = UIColor.blue
+        
+        let image = UIImageView(frame: CGRect(x:0, y:0, width: myCell.frame.size.width, height: myCell.frame.size.width))
+        image.contentMode =  UIView.ContentMode.scaleAspectFit
+        image.layer.masksToBounds = true
+        image.clipsToBounds = true
+        image.image = UIImage(named: "camera-icon")
+        image.backgroundColor = .clear
+        myCell.addSubview(image)
+        
+        let userImageFile = pictures[indexPath.row]["image"] as! PFFileObject
+        userImageFile.getDataInBackground (block: { (data, error) -> Void in
+            if error == nil {
+                if let imageData = data {
+                    image.image = UIImage(data:imageData)
+                }
+            }
+        })
+        
+        return myCell
+    }
 }
