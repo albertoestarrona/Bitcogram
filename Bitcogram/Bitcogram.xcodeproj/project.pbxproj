@@ -22,6 +22,8 @@
 		D239766E2285A7A2001F70BA /* like-pushed.png in Resources */ = {isa = PBXBuildFile; fileRef = D239766D2285A7A2001F70BA /* like-pushed.png */; };
 		D23976702285AC75001F70BA /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D239766F2285AC75001F70BA /* Date+Extensions.swift */; };
 		D23976722285CC97001F70BA /* PostDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23976712285CC97001F70BA /* PostDetailScreen.swift */; };
+		D2397674228621B4001F70BA /* UsersListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2397673228621B4001F70BA /* UsersListScreen.swift */; };
+		D23976772286259D001F70BA /* UserCellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23976762286259D001F70BA /* UserCellIdentifier.swift */; };
 		D2A8D0882281D50C00B056B6 /* LoginUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D0872281D50C00B056B6 /* LoginUserScreen.swift */; };
 		D2A8D08A2281D51C00B056B6 /* SignupUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D0892281D51C00B056B6 /* SignupUserScreen.swift */; };
 		D2A8D08D2281D6F100B056B6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8D08C2281D6F100B056B6 /* Utils.swift */; };
@@ -57,6 +59,8 @@
 		D239766D2285A7A2001F70BA /* like-pushed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-pushed.png"; sourceTree = "<group>"; };
 		D239766F2285AC75001F70BA /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		D23976712285CC97001F70BA /* PostDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailScreen.swift; sourceTree = "<group>"; };
+		D2397673228621B4001F70BA /* UsersListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListScreen.swift; sourceTree = "<group>"; };
+		D23976762286259D001F70BA /* UserCellIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellIdentifier.swift; sourceTree = "<group>"; };
 		D29AC56A79217F83BED8D2DA /* Pods-Bitcogram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bitcogram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bitcogram/Pods-Bitcogram.release.xcconfig"; sourceTree = "<group>"; };
 		D2A8D0872281D50C00B056B6 /* LoginUserScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserScreen.swift; sourceTree = "<group>"; };
 		D2A8D0892281D51C00B056B6 /* SignupUserScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUserScreen.swift; sourceTree = "<group>"; };
@@ -118,9 +122,19 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		D23976752286257E001F70BA /* Users List */ = {
+			isa = PBXGroup;
+			children = (
+				D2397673228621B4001F70BA /* UsersListScreen.swift */,
+				D23976762286259D001F70BA /* UserCellIdentifier.swift */,
+			);
+			path = "Users List";
+			sourceTree = "<group>";
+		};
 		D2A8D0862281D48600B056B6 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D23976752286257E001F70BA /* Users List */,
 				D23976662284E6F8001F70BA /* Feed */,
 				D2A8D0872281D50C00B056B6 /* LoginUserScreen.swift */,
 				D2A8D0892281D51C00B056B6 /* SignupUserScreen.swift */,
@@ -351,6 +365,7 @@
 				D23976702285AC75001F70BA /* Date+Extensions.swift in Sources */,
 				D2A8D08A2281D51C00B056B6 /* SignupUserScreen.swift in Sources */,
 				D23976612283A282001F70BA /* SharePostScreen.swift in Sources */,
+				D2397674228621B4001F70BA /* UsersListScreen.swift in Sources */,
 				D2A8D0882281D50C00B056B6 /* LoginUserScreen.swift in Sources */,
 				D239765B22837C4F001F70BA /* UIImage+Extensions.swift in Sources */,
 				D2A8D0A22282637F00B056B6 /* ProfileUserScreen.swift in Sources */,
@@ -366,6 +381,7 @@
 				D2A8D0A8228275A200B056B6 /* Logo.swift in Sources */,
 				D23976722285CC97001F70BA /* PostDetailScreen.swift in Sources */,
 				D2A8D08D2281D6F100B056B6 /* Utils.swift in Sources */,
+				D23976772286259D001F70BA /* UserCellIdentifier.swift in Sources */,
 				D239765D22838A3D001F70BA /* ParseUtils.swift in Sources */,
 				D23976682284F82B001F70BA /* PostsUI.swift in Sources */,
 			);

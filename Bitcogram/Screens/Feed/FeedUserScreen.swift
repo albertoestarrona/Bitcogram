@@ -34,6 +34,7 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
         let image = UIImage(named: "isotype_nav")
         imageView.image = image
         navigationItem.titleView = imageView
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action:  #selector(searchButtonItemClicked))
         
         container.backgroundColor = .white
         refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
@@ -44,7 +45,7 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
         postsTableView.register(PostCellIdentifier.self, forCellReuseIdentifier: postCellIdentifier)
         postsTableView.backgroundColor = .clear
         postsTableView.separatorColor = .clear
-postsTableView.delaysContentTouches = false
+        postsTableView.delaysContentTouches = false
         container.addSubview(postsTableView)
         
         postsTableView.snp.makeConstraints { make -> Void in
@@ -61,6 +62,11 @@ postsTableView.delaysContentTouches = false
         
         // For End refrshing
         refreshControl.endRefreshing()
+    }
+    
+    @objc func searchButtonItemClicked() {
+        let searchViewController = UsersListScreen()
+        self.navigationController?.pushViewController(searchViewController, animated: true)
     }
     
     func getPosts() {

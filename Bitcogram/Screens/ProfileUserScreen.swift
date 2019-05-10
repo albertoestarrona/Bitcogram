@@ -14,7 +14,8 @@ import Fusuma
 
 class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorViewable, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var currentUser = PFUser.current()
+    public var currentUser = PFUser.current()
+    public var userFromSearch = false
     var fusuma = FusumaViewController()
     var avatarImageView = UIImageView()
     var labelFollowersCount = UILabel()
@@ -159,8 +160,10 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     func getUserData()  {
         do {
             self.startAnimating()
-            try PFUser.current()?.fetch()
-            currentUser = PFUser.current()
+            if !userFromSearch {
+                try PFUser.current()?.fetch()
+                currentUser = PFUser.current()
+            }
             let followers = currentUser?.object(forKey: "followers") as! NSNumber
             labelFollowersCount.text = followers.stringValue
             let following = currentUser?.object(forKey: "following") as! NSNumber
@@ -184,7 +187,8 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     
     func getUserPictures()  {
         let query = PFQuery(className:"Post")
-        // query.whereKey("playerName", equalTo:"Sean Plott")
+        let userId = currentUser?.objectId
+        query.whereKey("owner", equalTo: userId!)
         query.order(byDescending: "createdAt")
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             self.stopAnimating()
@@ -224,10 +228,7 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         return pictures.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    {
-        print("User tapped on item \(indexPath.row)")
-        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = PostDetailScreen()
         detailViewController.navigationItem.title = ""
         detailViewController.post = pictures[indexPath.row]
