@@ -73,9 +73,6 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
             } else if let objects = objects {
                 self.posts = objects
                 self.postsTableView.reloadData()
-                for object in objects {
-                    print(object.objectId as Any)
-                }
             }
         }
     }

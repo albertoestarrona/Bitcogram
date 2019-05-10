@@ -227,6 +227,11 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         print("User tapped on item \(indexPath.row)")
+        
+        let detailViewController = PostDetailScreen()
+        detailViewController.navigationItem.title = ""
+        detailViewController.post = pictures[indexPath.row]
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
