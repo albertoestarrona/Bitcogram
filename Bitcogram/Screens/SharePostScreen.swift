@@ -131,8 +131,10 @@ class SharePostScreen : UIViewController, NVActivityIndicatorViewable, KeyboardD
         // Create Post Object and save it to backend
         let finalPost = PFObject(className:"Post")
         finalPost["owner"] = PFUser.current()?.objectId
+        finalPost["ownerName"] = PFUser.current()?.username
         finalPost["caption"] = inputImageText.text
         finalPost["likes"] = 0
+        finalPost.setObject(PFUser.current()?["avatar"] as Any , forKey: "ownerAvatar")
         let imageFinal : UIImage? = imageSelected!.resized(toWidth: 1024)
         saveImageToParse(object: finalPost, image: imageFinal!, key: "image", viewController: self)
         

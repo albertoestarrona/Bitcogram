@@ -164,7 +164,7 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         self.present(fusuma, animated: true, completion: nil)
     }
     
-    // MARK: FusumaDelegate
+    //MARK: FusumaDelegate
     func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
     }
     
