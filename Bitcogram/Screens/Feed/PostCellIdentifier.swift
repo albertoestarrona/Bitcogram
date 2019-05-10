@@ -19,7 +19,7 @@ class PostCellIdentifier: UITableViewCell {
     var likeButton = UIButton()
     var postLikes = UILabel()
 
-    var subscribeButtonAction : (() -> ())?
+    var likeButtonAction : (() -> ())?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -64,10 +64,10 @@ class PostCellIdentifier: UITableViewCell {
         postLikes = PostsUI.addLikeText(in: container)
         postDate = PostsUI.addDateText(in: container)
         
-        self.likeButton.addTarget(self, action: #selector(subscribeButtonTapped(_:)), for: .touchUpInside)
+        self.likeButton.addTarget(self, action: #selector(likeButtonTapped(_:)), for: .touchUpInside)
     }
     
-    @objc func subscribeButtonTapped(_ sender: UIButton){
-        subscribeButtonAction?()
+    @objc func likeButtonTapped(_ sender: UIButton){
+        likeButtonAction?()
     }
 }

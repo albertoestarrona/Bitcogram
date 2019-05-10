@@ -136,7 +136,7 @@ postsTableView.delaysContentTouches = false
             }
         })
         
-        cell.subscribeButtonAction = { [unowned self] in
+        cell.likeButtonAction = { [unowned self] in
             if !(liked?.contains(postId))! {
                 self.likePost(with: indexPath)
                 cell.likeButton.setBackgroundImage(UIImage(named: "like-pushed"), for: .normal)
