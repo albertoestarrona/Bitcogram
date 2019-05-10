@@ -43,6 +43,8 @@ class PostDetailScreen : UIViewController {
     }
     
     func setData() {
+        let liked: NSArray? = PFUser.current()?["liked"] as? NSArray
+        let postId = post?.objectId
         let userImageFile = post?["image"] as! PFFileObject
         userImageFile.getDataInBackground (block: { (data, error) -> Void in
             if error == nil {
@@ -55,6 +57,10 @@ class PostDetailScreen : UIViewController {
                     self.postLikes.text = likes!.stringValue + " likes"
                     let date = self.post?.createdAt
                     self.postDate.text = date?.timeAgo(numericDates: true)
+                    if (liked?.contains(postId))! {
+                        self.likeButton.setBackgroundImage(UIImage(named: "like-pushed"), for: .normal)
+                        self.likeButton.isEnabled = false
+                    }
                 }
             }
         })

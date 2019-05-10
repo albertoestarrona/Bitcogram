@@ -19,12 +19,15 @@ class PostCellIdentifier: UITableViewCell {
     var likeButton = UIButton()
     var postLikes = UILabel()
 
+    var subscribeButtonAction : (() -> ())?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.backgroundColor = .clear
         self.selectionStyle = .none
         self.accessoryType = .none
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,6 +50,8 @@ class PostCellIdentifier: UITableViewCell {
         ownerNameText.text = ""
         postText.text = ""
         postDate.text = ""
+        postLikes.text = ""
+        likeButton.setBackgroundImage(UIImage(named: "like-normal"), for: .normal)
     }
     
     private func buildUI(in container: UIView) {
@@ -59,38 +64,10 @@ class PostCellIdentifier: UITableViewCell {
         postLikes = PostsUI.addLikeText(in: container)
         postDate = PostsUI.addDateText(in: container)
         
+        self.likeButton.addTarget(self, action: #selector(subscribeButtonTapped(_:)), for: .touchUpInside)
     }
     
-    public func customize(with post: PFObject) {
-
-        let userImageFile = post["image"] as! PFFileObject
-        userImageFile.getDataInBackground (block: { (data, error) -> Void in
-            if error == nil {
-                if let imageData = data {
-                    self.postImage.image = UIImage(data:imageData)
-                    self.postText.text = post["caption"] as? String
-                    self.ownerName.text = post["ownerName"] as? String
-                    self.ownerNameText.text = post["ownerName"] as? String
-                    let likes = post["likes"] as? NSNumber
-                    self.postLikes.text = likes!.stringValue + " likes"
-                    let date = post.createdAt
-                    self.postDate.text = date?.timeAgo(numericDates: true)
-                }
-            }
-        })
-        let ownerAvatarFile = post["ownerAvatar"] as! PFFileObject
-        ownerAvatarFile.getDataInBackground (block: { (data, error) -> Void in
-            if error == nil {
-                if let imageData = data {
-                    self.ownerAvatar.image = UIImage(data:imageData)
-                }
-            }
-        })
-        
-        likeButton.addTarget(self, action: #selector(likePost), for:.touchUpInside)
-    }
-    
-    @objc func likePost(sender:UIButton!) {
-        
+    @objc func subscribeButtonTapped(_ sender: UIButton){
+        subscribeButtonAction?()
     }
 }

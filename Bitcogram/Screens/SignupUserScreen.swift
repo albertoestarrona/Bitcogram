@@ -116,6 +116,7 @@ class SignupUserScreen : UIViewController, KeyboardDismissable, UITextFieldDeleg
             user["posts"] = 0
             user["followers"] = 0
             user["following"] = 0
+            user["liked"] = []
             
             self.startAnimating()
             

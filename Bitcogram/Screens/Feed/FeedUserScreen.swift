@@ -44,6 +44,7 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
         postsTableView.register(PostCellIdentifier.self, forCellReuseIdentifier: postCellIdentifier)
         postsTableView.backgroundColor = .clear
         postsTableView.separatorColor = .clear
+postsTableView.delaysContentTouches = false
         container.addSubview(postsTableView)
         
         postsTableView.snp.makeConstraints { make -> Void in
@@ -99,11 +100,66 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let post = posts[indexPath.row]
+        let liked: NSArray? = PFUser.current()?["liked"] as? NSArray
+        let postId = post.objectId
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: postCellIdentifier, for: indexPath) as! PostCellIdentifier
         
-        cell.selectionStyle = .none
-        cell.customize(with: posts[indexPath.row])
+        cell.isUserInteractionEnabled = true
+        //cell.customize(with: posts[indexPath.row])
+        
+        let userImageFile = post["image"] as! PFFileObject
+        userImageFile.getDataInBackground (block: { (data, error) -> Void in
+            if error == nil {
+                if let imageData = data {
+                    cell.postImage.image = UIImage(data:imageData)
+                    cell.postText.text = post["caption"] as? String
+                    cell.ownerName.text = post["ownerName"] as? String
+                    cell.ownerNameText.text = post["ownerName"] as? String
+                    let likes = post["likes"] as? NSNumber
+                    cell.postLikes.text = likes!.stringValue + " likes"
+                    let date = post.createdAt
+                    cell.postDate.text = date?.timeAgo(numericDates: true)
+                    if (liked?.contains(postId))! {
+                        cell.likeButton.setBackgroundImage(UIImage(named: "like-pushed"), for: .normal)
+                    }
+                }
+            }
+        })
+        let ownerAvatarFile = post["ownerAvatar"] as! PFFileObject
+        ownerAvatarFile.getDataInBackground (block: { (data, error) -> Void in
+            if error == nil {
+                if let imageData = data {
+                    cell.ownerAvatar.image = UIImage(data:imageData)
+                }
+            }
+        })
+        
+        cell.subscribeButtonAction = { [unowned self] in
+            if !(liked?.contains(postId))! {
+                self.likePost(with: indexPath)
+                cell.likeButton.setBackgroundImage(UIImage(named: "like-pushed"), for: .normal)
+                let likes = post["likes"] as? NSNumber
+                cell.postLikes.text = likes!.stringValue + " likes"
+            }
+        }
         
         return cell
+    }
+    
+    func likePost(with index:IndexPath) {
+        print("Index ", index.row)
+        // Update Likes count for the Post
+        posts[index.row].incrementKey("likes")
+        posts[index.row].saveInBackground()
+        
+        // Update Liked items for the user
+        let liked: NSArray? = PFUser.current()?["liked"] as? NSArray
+        let newLiked = NSMutableArray(array: liked!)
+        let postId = posts[index.row].objectId
+        newLiked.add(postId!)
+        PFUser.current()?["liked"] = newLiked
+        PFUser.current()?.saveInBackground()
     }
 }
