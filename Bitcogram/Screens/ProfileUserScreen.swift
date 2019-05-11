@@ -23,6 +23,9 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     var labelPostsCount = UILabel()
     var pictures = [PFObject]()
     var picturesCollectionView : UICollectionView?
+    var buttonFollow = UIButton(type: .custom)
+    var followers: NSArray?
+    var userAdds: PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +63,7 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         labelFollowersCount.textAlignment = .center
         labelFollowersCount.adjustsFontSizeToFitWidth = true
         labelFollowersCount.font = UIFont.boldSystemFont(ofSize: 18.0)
+        labelFollowersCount.text = "0"
         container.addSubview(labelFollowersCount)
         
         let labelFollowersTitle = UILabel()
@@ -74,6 +78,7 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         labelFollowingCount.textAlignment = .center
         labelFollowingCount.adjustsFontSizeToFitWidth = true
         labelFollowingCount.font = UIFont.boldSystemFont(ofSize: 18.0)
+        labelFollowingCount.text = "0"
         container.addSubview(labelFollowingCount)
         
         let labelFollowingTitle = UILabel()
@@ -88,6 +93,7 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         labelPostsCount.textAlignment = .center
         labelPostsCount.adjustsFontSizeToFitWidth = true
         labelPostsCount.font = UIFont.boldSystemFont(ofSize: 18.0)
+        labelPostsCount.text = "0"
         container.addSubview(labelPostsCount)
         
         let labelPostsTitle = UILabel()
@@ -97,6 +103,17 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         labelPostsTitle.font = UIFont.systemFont(ofSize: 12.0)
         labelPostsTitle.text = "Posts"
         container.addSubview(labelPostsTitle)
+        
+        buttonFollow.backgroundColor = UIColor.clear
+        buttonFollow.layer.cornerRadius = 5
+        buttonFollow.layer.borderWidth = 2
+        buttonFollow.layer.borderColor = UIColor.gray.cgColor
+        buttonFollow.setTitle("Follow", for: .normal)
+        buttonFollow.isEnabled = false
+        buttonFollow.setTitleColor(UIColor.gray, for: .normal)
+        buttonFollow.setTitleColor(UIColor.lightGray, for: .highlighted)
+        buttonFollow.addTarget(self, action: #selector(followUser), for: .touchUpInside)
+        container.addSubview(buttonFollow)
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -147,16 +164,22 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
             make.centerX.equalTo(labelFollowingCount.snp.centerX)
             make.top.equalTo(labelFollowingCount.safeAreaLayoutGuide.snp.bottom).offset(8)
         }
+        buttonFollow.snp.remakeConstraints { (make) -> Void in
+            make.width.equalTo(60)
+            make.right.equalTo(labelFollowingTitle.snp.right)
+            make.left.equalTo(labelPostsTitle.snp.left)
+            make.top.equalTo(labelFollowingTitle.safeAreaLayoutGuide.snp.bottom).offset(15)
+        }
         picturesCollectionView?.snp.remakeConstraints { (make) -> Void in
             make.left.equalTo(container.snp.left)
             make.right.equalTo(container.snp.right)
             make.centerX.equalToSuperview()
-            make.top.equalTo(labelFollowingTitle.safeAreaLayoutGuide.snp.bottom).offset(40)
+            make.top.equalTo(buttonFollow.safeAreaLayoutGuide.snp.bottom).offset(40)
             make.bottom.equalTo(container.safeAreaLayoutGuide.snp.bottom)
         }
     }
     
-    // Reload CurrentUser
+    //MARK: Reload CurrentUser
     func getUserData()  {
         do {
             self.startAnimating()
@@ -164,24 +187,36 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
                 try PFUser.current()?.fetch()
                 currentUser = PFUser.current()
             }
-            let followers = currentUser?.object(forKey: "followers") as! NSNumber
-            labelFollowersCount.text = followers.stringValue
-            let following = currentUser?.object(forKey: "following") as! NSNumber
-            labelFollowingCount.text = following.stringValue
+            let following: NSArray? = currentUser?["following"] as? NSArray
+            labelFollowingCount.text = String(following!.count)
             let posts = currentUser?.object(forKey: "posts") as! NSNumber
             labelPostsCount.text = posts.stringValue
-            let userImageFile = currentUser?["avatar"] as! PFFileObject
-            userImageFile.getDataInBackground (block: { (data, error) -> Void in
-                if error == nil {
-                    if let imageData = data {
+            if currentUser?["avatar"] != nil {
+                let userImageFile: PFFileObject = (currentUser?["avatar"] as! PFFileObject)
+                userImageFile.getDataInBackground (block: { (data, error) -> Void in
+                    if error == nil {
+                        if let imageData = data {
                         self.avatarImageView.image = UIImage(data:imageData)
+                        }
                     }
-                }
-            })
+                })
+            }
             self.stopAnimating()
         } catch(let error) {
             self.stopAnimating()
             presentError(controller: self, title: "Error", error: error.localizedDescription)
+        }
+        
+        //Get followers
+        let query = PFQuery(className:"UserAdds")
+        let userId = currentUser?.objectId
+        query.whereKey("owner", equalTo: userId!)
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            self.userAdds = objects?[0]
+            self.followers = objects?[0]["followers"] as? NSArray
+            self.labelFollowersCount.text = String(self.followers!.count)
+            
+            self.validateFollowing()
         }
     }
     
@@ -201,7 +236,43 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
         }
     }
     
-    // Profile picture capture
+    //MARK: FOLLOW Functionality
+    @objc func followUser(sender:UIButton!) {
+        let userId = PFUser.current()?.objectId
+        if !((followers?.contains(userId))!) {
+            let newFollowers = NSMutableArray(array: followers!)
+            newFollowers.add(userId!)
+            userAdds?["followers"] = newFollowers
+            userAdds?.saveInBackground()
+            buttonFollow.setTitle("Following", for: .normal)
+            buttonFollow.isEnabled = false
+            labelFollowersCount.text = String(newFollowers.count)
+            
+            //let updatingUser = PFUser.current()
+            let following: NSArray? = PFUser.current()?["following"] as? NSArray
+            let newFollowing = NSMutableArray(array: following!)
+            let userFollowing = currentUser?.objectId
+            newFollowing.add(userFollowing!)
+            PFUser.current()?["following"] = newFollowing
+            PFUser.current()?.saveInBackground()
+        }
+    }
+    
+    func validateFollowing() {
+        if currentUser?.objectId == PFUser.current()?.objectId {
+            buttonFollow.isEnabled = false
+        } else {
+            buttonFollow.isEnabled = true
+        }
+        
+        let userId = PFUser.current()?.objectId
+        if (self.followers?.contains(userId))! {
+            buttonFollow.setTitle("Following", for: .normal)
+            buttonFollow.isEnabled = false
+        }
+    }
+    
+    //MARK: Profile picture capture
     @objc func profileImageClicked() {
         self.present(fusuma, animated: true, completion: nil)
     }

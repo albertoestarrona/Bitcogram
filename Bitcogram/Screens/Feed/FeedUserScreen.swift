@@ -133,14 +133,16 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
             }
         })
-        let ownerAvatarFile = post["ownerAvatar"] as! PFFileObject
-        ownerAvatarFile.getDataInBackground (block: { (data, error) -> Void in
-            if error == nil {
-                if let imageData = data {
-                    cell.ownerAvatar.image = UIImage(data:imageData)
+        if let ownerAvatarFile = (post["ownerAvatar"] as? PFFileObject) {
+            //let ownerAvatarFile = post["ownerAvatar"] as! PFFileObject
+            ownerAvatarFile.getDataInBackground (block: { (data, error) -> Void in
+                if error == nil {
+                    if let imageData = data {
+                        cell.ownerAvatar.image = UIImage(data:imageData)
+                    }
                 }
-            }
-        })
+            })
+        } // TODO Get updated avatar when available
         
         cell.likeButtonAction = { [unowned self] in
             if !(liked?.contains(postId))! {
