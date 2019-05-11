@@ -1,0 +1,13 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Bitcogram' do
+  use_frameworks!
+  # Pods for Bitcogram
+  pod 'SnapKit', '4.2.0'
+  pod 'NVActivityIndicatorView', '4.6.1'
+  pod 'Parse'
+  pod 'Fusuma', '1.3.3'
+  pod 'YPImagePicker'
+
+end
