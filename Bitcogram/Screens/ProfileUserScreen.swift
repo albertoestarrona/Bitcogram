@@ -248,7 +248,6 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
             buttonFollow.isEnabled = false
             labelFollowersCount.text = String(newFollowers.count)
             
-            //let updatingUser = PFUser.current()
             let following: NSArray? = PFUser.current()?["following"] as? NSArray
             let newFollowing = NSMutableArray(array: following!)
             let userFollowing = currentUser?.objectId
@@ -308,7 +307,7 @@ class ProfileUserScreen : UIViewController, FusumaDelegate, NVActivityIndicatorV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "pictureCell", for: indexPath as IndexPath)
-        myCell.backgroundColor = UIColor.blue
+        myCell.backgroundColor = UIColor.clear
         
         let image = UIImageView(frame: CGRect(x:0, y:0, width: myCell.frame.size.width, height: myCell.frame.size.width))
         image.contentMode =  UIView.ContentMode.scaleAspectFit

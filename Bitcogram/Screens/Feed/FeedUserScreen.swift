@@ -57,7 +57,6 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @objc func didPullToRefresh() {
-        print("Refersh")
         getPosts()
         
         // For End refrshing
@@ -70,16 +69,21 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func getPosts() {
+        let following: NSArray? = PFUser.current()?["following"] as? NSArray
         let query = PFQuery(className:"Post")
-        // query.whereKey("playerName", equalTo:"Sean Plott")
+        query.whereKey("owner", containedIn: following as! [Any])
         query.order(byDescending: "createdAt")
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             self.stopAnimating()
             if let error = error {
                 print(error.localizedDescription)
             } else if let objects = objects {
-                self.posts = objects
-                self.postsTableView.reloadData()
+                if objects.count == 0 {
+                    presentAlert(controller: self, title: "Welcome!", message: "Bitcogram is better when you start following people.\n\nClick on the \"Search\" button and browse between the cool profiles in our network")
+                } else {
+                    self.posts = objects
+                    self.postsTableView.reloadData()
+                }
             }
         }
     }
@@ -87,7 +91,6 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
     //MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    // TODO Got to Details
         
     }
     
@@ -157,7 +160,6 @@ class FeedUserScreen : UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func likePost(with index:IndexPath) {
-        print("Index ", index.row)
         // Update Likes count for the Post
         posts[index.row].incrementKey("likes")
         posts[index.row].saveInBackground()

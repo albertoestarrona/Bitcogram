@@ -114,7 +114,6 @@ class SignupUserScreen : UIViewController, KeyboardDismissable, UITextFieldDeleg
             user.email = try inputEmail.validatedText(validationType: ValidatorType.email)
             user.password = try inputPassword.validatedText(validationType: ValidatorType.password)
             user["posts"] = 0
-            user["followers"] = []
             user["following"] = []
             user["liked"] = []
             
@@ -123,6 +122,12 @@ class SignupUserScreen : UIViewController, KeyboardDismissable, UITextFieldDeleg
             user.signUpInBackground { (success, error) in
                 self.stopAnimating()
                 if success{
+                    // Creating UserAdds
+                    let userAdds = PFObject(className:"UserAdds")
+                    userAdds["owner"] = user.objectId
+                    userAdds["followers"] = []
+                    userAdds.saveInBackground()
+                    
                     self.view.window!.rootViewController = selectViewController()
                 }else{
                     if let description = error?.localizedDescription{

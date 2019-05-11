@@ -20,7 +20,7 @@ func saveInstallationObject(){
                 if let myError = error{
                     print(myError.localizedDescription)
                 }else{
-                    print("Uknown error")
+                    print("Uknown error on Back4App server")
                 }
             }
         }
@@ -32,7 +32,7 @@ func saveImageToParse(object: PFObject, image: UIImage, key: String, viewControl
     object.setObject(avatar!, forKey: key)
     object.saveInBackground { (success, error) in
         if success{
-            print("Yahooooo!")
+            print("Picture sucessfully saved")
         }else{
             if let description = error?.localizedDescription{
                 presentError(controller: viewController, title: "Error", error: description)
